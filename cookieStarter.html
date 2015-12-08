@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head><title>Retrieve and Display Cookie Data</title>
+<script type="text/javascript">
+if (window.addEventListener) {
+    // DOM2 standard
+    window.addEventListener("load", showCookieData, false);
+}
+else {
+    // Microsoft's precursor to it, IE8 and earlier
+    window.attachEvent("onload", showCookieData);
+}
+//for Chrome, cookies won't work locally. You have to test from a web server if using Chrome.
+
+var cookieData = decodeURI(document.cookie);
+var myCookiePieces = cookieData.split("x*x");
+
+
+var someName = myCookiePieces[0];
+var myNumber = myCookiePieces[1];
+var letterName = myCookiePieces[2];
+var theAnimal = myCookiePieces[3];
+var theAnimalPic = myCookiePieces[4];
+
+
+
+function showCookieData() {
+		document.getElementById("div1").innerHTML = someName;
+		document.getElementById("div2").innerHTML = myNumber;
+		document.getElementById("div3").innerHTML = letterName;
+		document.getElementById("div4").innerHTML = theAnimal; 
+
+		
+		for(var i=0; i<myCookiePieces.length; i++) {
+			var pTag = document.createElement("p");
+			pTag.appendChild(document.createTextNode(myCookiePieces[i]));//adds the text to the paragraph tag.
+			document.body.appendChild(pTag);//add the paragraph tags with its text to the end of the body of the document.
+		}//end of for loop
+		
+}//end of showCookieData function
+</script>
+</head>
+<body style="font-size: 15px; font-family: arial">
+	<div><span style="font-weight: bold">Congratulations you have won:</span>
+	
+	<script type="text/javascript">document.write("<br /><br /> Congratulations " + someName + "<br /><br />You have won a " + myNumber + " year old " + theAnimal + " named " + letterName + "<br /> <br />" + "<img src=images/" + theAnimalPic + ">")</script>
+	</div>
+	<br /><br />
+
+</body>
+</html>
